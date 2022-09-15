@@ -11,7 +11,7 @@ public class Hangman extends GraphicsProgram {
     //classes
     private Hang hang;
     private Man man;
-    private Word word = new Word();
+    private Word word;
 
     //variables
     private int wrong, letterV, save, wins, losses;
@@ -58,38 +58,7 @@ public class Hangman extends GraphicsProgram {
         //make a new instance of the hang class
         hang = new Hang();
 
-        //set the x, y, width, height, and color of the hpl
-        hang.hpl = new GRect(getWidth() / 4, 1);
-        hang.hplX = getWidth() / 2;
-        hang.hplY = getHeight() / 2;
-        hang.hpl.setColor(Color.GRAY);
-
-        //set the x, y, width, height, and color of the vertical pole
-        hang.vp = new GRect(1, getHeight() / 4);
-        hang.vpX = hang.hplX + hang.hpl.getWidth() / 2;
-        hang.vpY = hang.hplY - hang.vp.getHeight();
-        hang.vp.setColor(Color.GRAY);
-
-        //set the x, y, width, height, and color of the hps
-        hang.hps = new GRect(hang.hpl.getWidth() / 2, 1);
-        hang.hpsX = hang.vpX - hang.hps.getWidth();
-        hang.hpsY = hang.vpY;
-        hang.hps.setColor(Color.GRAY);
-
-        //set the x, y, width, height, and color of the hook
-        hang.h = new GRect(1, hang.vp.getHeight() / 3.5);
-        hang.hX = hang.hpsX;
-        hang.hY = hang.hpsY;
-        hang.h.setColor(Color.GRAY);
-
-        //add the hpl, vp, hps, and h
-        add(hang.hpl, hang.hplX, hang.hplY);
-
-        add(hang.vp, hang.vpX, hang.vpY);
-
-        add(hang.hps, hang.hpsX, hang.hpsY);
-
-        add(hang.h, hang.hX, hang.hY);
+        add(hang,0,0);
     }
 
     private void drawMan() {
@@ -126,6 +95,7 @@ public class Hangman extends GraphicsProgram {
     }
 
     private void drawLetterBox() {
+        word = new Word();
 
         //make a letter box
         word.letterBox = new GRect(getWidth() * .4, getHeight() / 4);
